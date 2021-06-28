@@ -1,6 +1,6 @@
 # school Management System
 
-School Management system using Django and MongoDB and NuxtJS
+School Management system using Django and MongoDB and TailwindCSS
 
 ## Install Dependecies
 
