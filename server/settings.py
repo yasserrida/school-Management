@@ -1,11 +1,15 @@
 from pathlib import Path
+import environ
+
+env = environ.Env()
+environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-v%#f=f47=2zr*7d+*#f@2+nh#!_w39acs-w)-xi19bx-&b(76('
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -58,14 +62,14 @@ WSGI_APPLICATION = 'server.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'djongo',
-        'NAME': 'school',
+        'ENGINE': env('DATABASE_ENGIN'),
+        'NAME': env('DATABASE_NAME'),
         'ENFORCE_SCHEMA': False,
         'CLIENT': {
-                'host': 'localhost',
-                'port': 27017,
-                'username': '',
-                'password': ''
+            'host': env('DATABASE_HOST'),
+            'port': int(env('DATABASE_PORT')),
+            'username': env('DATABASE_USER'),
+            'password': env('DATABASE_PASS')
         }
     }
 }
